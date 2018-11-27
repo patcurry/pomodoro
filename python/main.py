@@ -1,4 +1,5 @@
 import time
+import sys
 import os
 
 def how_long():
@@ -14,25 +15,33 @@ def how_long():
         print(t, 'minutes')
     return t * 60
 
-def stopwatch(seconds):
-    #start = time.time()
-    #time.perf_counter()
-    #elapsed = 0
-    #while elapsed < seconds:
-    #    elapsed = time.time() - start
-    #    #print("loop cycle time: %f, seconds count: %02d") % (time.clock() , elapsed) 
-    #    #print(time.perf_counter())
-    #    print(f'{elapsed:.0f}')
-    #    time.sleep(1)  
+def counting_increment():
+    try:
+        t = int(input('What should the counting increment be, in seconds? '))
+    except:
+        return 1
+    if t == 1:
+        print(t, 'second')
+    else:
+        print(t, 'seconds')
+    return t
 
-    # I don't really need to print anything out... I just need to wait, right?
+def timer(minutes_to_seconds, inc):
     print("Get to work!")
     os.system('say "Get to work!"')
-    time.sleep(seconds)
-    print("Beer time!")
+
+    for remaining in range(minutes_to_seconds, 0, -inc):
+        sys.stdout.write("\r")
+        sys.stdout.write("{:2d} seconds remaining.".format(remaining)) 
+        sys.stdout.flush()
+        time.sleep(inc)
+
+    sys.stdout.flush()
+    print("\nBeer time!")
     os.system('say "Beer time!"')
     os.system('afplay ./sounds/techno.mp3')
 
-# call the functions
-minutes = how_long()
-stopwatch(minutes)
+# call everything
+minutes_to_seconds = how_long()
+increment = counting_increment()
+timer(minutes_to_seconds, increment)
