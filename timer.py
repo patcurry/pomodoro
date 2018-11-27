@@ -9,12 +9,15 @@ def how_long():
     except:
         # if they give an invalid response... well then it's beer time!
         return 0
-
     if t == 1:
+        print(t, 'minute')
+    elif t < 1:
+        t = 1
         print(t, 'minute')
     else:
         print(t, 'minutes')
     return t * 60
+
 
 def counting_increment():
     try:
@@ -22,6 +25,9 @@ def counting_increment():
     except:
         return 1
     if t == 1:
+        print(t, 'second')
+    elif t < 1:
+        t = 1
         print(t, 'second')
     else:
         print(t, 'seconds')
