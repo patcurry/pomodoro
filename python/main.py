@@ -27,6 +27,7 @@ def stopwatch(seconds):
 
     # I don't really need to print anything out... I just need to wait, right?
     print("Get to work!")
+    os.system('say "Get to work!"')
     time.sleep(seconds)
     print("Beer time!")
     os.system('say "Beer time!"')
